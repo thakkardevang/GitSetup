@@ -15,16 +15,13 @@
  * Set pipelineVersion to a fixed released version (e.g. "v15") when running in a productive environment.
  * To find out about available versions and release notes, visit: https://github.com/SAP/cloud-s4-sdk-pipeline/releases
  */
-String pipelineVersion = "master"
-String credentialId="gitpipeline"
-
-node { 
+node {
     deleteDir()
-    stage('Checkout') {
-        steps {
-            git(branch: ${pipelineVersion}, credentialsId: ${credentialId}, url: 'https://github.com/CapgeminiAutoCloud/PipelineApp.git')
-        }
+    stage('Source') {
 
-        load './pipelines/s4sdk-pipeline.groovy'
-   }
-}
+            git(branch: ${pipelineVersion}, credentialsId: ${credentialId}, url: 'https://github.com/CapgeminiAutoCloud/PipelineApp.git')
+        
+
+            load './pipelines/s4sdk-pipeline.groovy'
+        }
+    }
