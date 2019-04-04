@@ -16,9 +16,14 @@
  * To find out about available versions and release notes, visit: https://github.com/SAP/cloud-s4-sdk-pipeline/releases
  */
 String pipelineVersion = "master"
+String credentialId="gitpipeline"
 
 node {
     deleteDir()
-    sh "git clone --depth 1 https://github.com/SAP/cloud-s4-sdk-pipeline.git -b ${pipelineVersion} pipelines"
-    load './pipelines/s4sdk-pipeline.groovy'
+    stage('Checkout') {
+        steps {
+            git branch: ${pipelineVersion}, credentialsId: ${credentialId}, url: 'ssh://git@github.com:CapgeminiAutoCloud/PipelineApp.git'
+            load './pipelines/s4sdk-pipeline.groovy'
+        }
+    }
 }
