@@ -18,12 +18,13 @@
 String pipelineVersion = "master"
 String credentialId="gitpipeline"
 
-node {
+node { 
     deleteDir()
     stage('Checkout') {
         steps {
-            git branch: ${pipelineVersion}, credentialsId: ${credentialId}, url: 'ssh://git@github.com:CapgeminiAutoCloud/PipelineApp.git'
-            load './pipelines/s4sdk-pipeline.groovy'
+            git(branch: ${pipelineVersion}, credentialsId: ${credentialId}, url: 'https://github.com/CapgeminiAutoCloud/PipelineApp.git')
         }
-    }
+
+        load './pipelines/s4sdk-pipeline.groovy'
+   }
 }
