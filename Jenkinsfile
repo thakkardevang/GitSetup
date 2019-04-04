@@ -17,11 +17,11 @@
  */
 
 String pipelineVersion = "master";
-String credentialId="gitpipeline";
+String credentialId="gitpipeline"
 
 node {
     deleteDir()
-    git credentialsId: ${credentialId}, url: 'https://github.com/CapgeminiAutoCloud/PipelineApp.git', branch : ${pipelineVersion}
-    load './pipelines/s4sdk-pipeline.groovy'
+    git branch : 'master', credentialsId: 'gitpipeline', url: 'https://github.com/CapgeminiAutoCloud/PipelineApp.git'
+//    load './pipelines/s4sdk-pipeline.groovy'
 
     }
