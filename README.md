@@ -1,2 +1,2 @@
 # GitSetup
-Test
+Testing
